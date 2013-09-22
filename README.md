@@ -57,7 +57,7 @@ Simple HTML output
     ContentComparator.compareStatic(ca, cb, writer);
     
 Which outputs something like:
-![Sample output](/sample.png "Sample output")
+![Sample output](/output.png "Sample output")
 
 Own handler
 -----------
