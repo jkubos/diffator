@@ -55,6 +55,9 @@ Simple HTML output
     writer.setNewLinesStrategy(NewLinesStrategy.perBlock);
     		
     ContentComparator.compareStatic(ca, cb, writer);
+    
+Which outputs something like:
+![Sample output](/sample.png "Sample output")
 
 Own handler
 -----------
