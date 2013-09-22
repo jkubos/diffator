@@ -24,17 +24,24 @@ This algoriths belongs to the category of simplest, but efficient. One of proble
 Lightweight
 -----------
 
-Because used in web crawler (<http://www.nalezen.cz/about-crawler>) it must be memory efficient. For this reason it was optimized to almost not allocating memory during diff operation. It reports diff events to callback in SAX-like manner so no output collection is created.
+Because used in web crawler (<http://www.nalezen.cz/about-crawler>) it must be memory efficient. For this reason it was optimized to minimize memory allocation during diff operation. It reports diff events to callback handler in SAX-like manner so no output collection is created.
 
 Fast
 ----
 
 Again, this library is used in web crawler therefore speed is important. During development 3 strategies had been developed before we found suitable one for us. You may pick from (M is count of items in left content, N is count of items in right content):
-*  M*N memory - 
-*  2*M memory - Memory efficient but CPU intensive. 
+*  M*N memory - All possible substrings of inputs are calculated before diff. This array is reused for longest common string of subparts during recursion.
+*  2*M memory - Memory efficient but CPU intensive. Only longest substring is calculated. This must be repeated for every subpart during recursion.
 *  Sparse memory - Great for similar contents - only non-zero cells in M*N matrix are stored. Memory very efficient if contents are really similar.
 
+It is hard to decide what algorithm will be most suitable for you. It depends on size of your data, similarity of data, memory usage you are willing to accept, ... Maybe best way is to test all 3 algorithms in your environment.
 
-How it works
+Sample
 ============
 
+Simple HTML output
+------------------
+
+
+Own handler
+-----------
