@@ -63,6 +63,14 @@ Which outputs something like:
 Own handler
 -----------
 
-Just prepare object of class having cz.nalezen.diffator.DiffEventsHandler interface. Then pass it to :
+Just prepare object of class having cz.nalezen.diffator.DiffEventsHandler interface. Then use it:
 
-`test()`
+    String[] wordsA = ...;
+    String[] wordsB = ...;
+    
+    Content ca = new Content(wordsA);
+    Content cb = new Content(wordsB);
+    
+    MyDiffHandler handler = new MyDiffHandler();
+
+    ContentComparator.compareStatic(ca, cb, handler);
