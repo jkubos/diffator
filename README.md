@@ -42,6 +42,21 @@ Sample
 Simple HTML output
 ------------------
 
+`
+String[] wordsA = ...;
+String[] wordsB = ...;
+
+Content ca = new Content(wordsA);
+Content cb = new Content(wordsB);
+		
+FileOutputStream fstr = new FileOutputStream("test.html");
+		
+SimpleHtmlDiffWriter writer = new SimpleHtmlDiffWriter(fstr);
+writer.setTitle("My sample diff");
+writer.setNewLinesStrategy(NewLinesStrategy.perBlock);
+		
+ContentComparator.compareStatic(ca, cb, writer);
+`
 
 Own handler
 -----------
