@@ -45,3 +45,7 @@ Simple HTML output
 
 Own handler
 -----------
+
+Just prepare object of class having cz.nalezen.diffator.DiffEventsHandler interface. Then pass it to :
+
+`test()`
