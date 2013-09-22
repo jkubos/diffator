@@ -29,10 +29,10 @@ Because used in web crawler (<http://www.nalezen.cz/about-crawler>) it must be m
 Fast
 ----
 
-Again, this library is used in web crawler therefore speed is important. During development 3 strategies had been developed before we found suitable one for us. You may pick from (M is count of items in left content, Nis count of items in right content):
+Again, this library is used in web crawler therefore speed is important. During development 3 strategies had been developed before we found suitable one for us. You may pick from (M is count of items in left content, N is count of items in right content):
 *  M*N memory - 
-*  2*M memory - 
-*  Sparse memory - 
+*  2*M memory - Memory efficient but CPU intensive. 
+*  Sparse memory - Great for similar contents - only non-zero cells in M*N matrix are stored. Memory very efficient if contents are really similar.
 
 
 How it works
