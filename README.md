@@ -19,7 +19,7 @@ Used algorithm is simple:
 2.  this splits each content into 3 parts: 'before-match-after'
 3.  call 1. for 'before' parts of contents and then for 'after' parts of contents recursively
 
-This algoriths belongs to the category of simplest, but efficient. One of issues of it is, that it has issues with scattered contents.
+This algoriths belongs to the category of simplest, but efficient. One of problems of it is scattered contents detection - in some cases this algorithm fails.
 
 Lightweight
 -----------
