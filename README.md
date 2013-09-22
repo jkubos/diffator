@@ -14,6 +14,7 @@ Diff algorithm
 --------------
 
 Used algorithm is simple:
+
 1.  find [longest common substring](<http://en.wikibooks.org/w/index.php?title=Algorithm_Implementation/Strings/Longest_common_substring&stable=1>) of contents
 2.  this splits each content into 3 parts: 'before-match-after'
 3.  call 1. for 'before' parts of contents and then for 'after' parts of contents recursively
