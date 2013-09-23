@@ -63,6 +63,25 @@ Which outputs something like:
 Own handler
 -----------
 
-Just prepare object of class having cz.nalezen.diffator.DiffEventsHandler interface. Then pass it to :
+Just prepare object of class having cz.nalezen.diffator.DiffEventsHandler interface. Then use it:
 
-`test()`
+    String[] wordsA = ...;
+    String[] wordsB = ...;
+    
+    Content ca = new Content(wordsA);
+    Content cb = new Content(wordsB);
+    
+    MyDiffHandler handler = new MyDiffHandler();
+
+    ContentComparator.compareStatic(ca, cb, handler);
+
+Pick proper comparison method
+-----------------------------
+
+For comparison operation cz.nalezen.diffator.ContentComparator is used. For initialization of this class is required implementation of comparison. Choices are:
+
+*  ContentsComparatorHashImpl - sparse memory implemented by HashMap; default
+*  ContentsComparatorLowMemImpl - 2*M
+*  ContentsComparatorQuadMemImpl - M*N
+
+For sake of simplicity there is also non-parametric constructor which uses default implementation. Also there are static methods which constructs ContentComparator instance internally.
