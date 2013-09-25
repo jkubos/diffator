@@ -1,0 +1,28 @@
+apply plugin: 'maven'
+
+dependencies {
+}
+
+jar {
+    dependsOn configurations.runtime
+    from ({ configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }) {
+	exclude "META-INF/*.SF"
+        exclude "META-INF/*.DSA"
+        exclude "META-INF/*.RSA"	
+    }
+}
+
+task writeNewPom << {
+    pom {
+        project {
+            inceptionYear '2013'
+            licenses {
+                license {
+                    name 'The Apache Software License, Version 2.0'
+                    url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                    distribution 'repo'
+                }
+            }
+        }
+    }.writeTo("$buildDir/pom.xml")
+}
