@@ -1,7 +1,7 @@
 Diffator
 ========
 
-Diffator is Java two-way diff library developed for purposes of service <http://www.nalezen.cz>. It has following attributes.
+Diffator is Java two-way diff and comparison (similarity in range 0.0 to 1.0) library developed for purposes of service <http://www.nalezen.cz>. It has following attributes.
 
 Universal
 ---------
@@ -36,8 +36,19 @@ Again, this library is used in web crawler therefore speed is important. During 
 
 It is hard to decide what algorithm will be most suitable for you. It depends on size of your data, similarity of data, memory usage you are willing to accept, ... Maybe best way is to test all 3 algorithms in your environment.
 
+Threadsafe
+----------
+
+You may use one ContentComparator by multiple threads because each comparation-related data are holded separatelly (ContentsComparatorContext subclass).
+
 Sample
 ============
+
+Generate JavaDoc
+----------------
+
+    gradle javadoc
+
 
 Simple HTML output
 ------------------
@@ -73,7 +84,7 @@ Just prepare object of class having cz.nalezen.diffator.DiffEventsHandler interf
     
     MyDiffHandler handler = new MyDiffHandler();
 
-    ContentComparator.compareStatic(ca, cb, handler);
+    double similarity = ContentComparator.compareStatic(ca, cb, handler);
 
 Pick proper comparison method
 -----------------------------
