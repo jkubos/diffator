@@ -73,7 +73,7 @@ Just prepare object of class having cz.nalezen.diffator.DiffEventsHandler interf
     
     MyDiffHandler handler = new MyDiffHandler();
 
-    ContentComparator.compareStatic(ca, cb, handler);
+    double similarity = ContentComparator.compareStatic(ca, cb, handler);
 
 Pick proper comparison method
 -----------------------------
