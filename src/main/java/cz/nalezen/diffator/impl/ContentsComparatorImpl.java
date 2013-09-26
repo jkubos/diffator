@@ -100,6 +100,8 @@ public abstract class ContentsComparatorImpl<T extends ContentsComparatorContext
 		
 		//empty range - quit
 		if (rangeA.isEmpty() || rangeB.isEmpty()) {
+			//report to callback
+			report(consumer, a, rangeA, b, rangeB, EventType.DIFFERENT_PART);
 			return 0;
 		}
 
@@ -113,10 +115,7 @@ public abstract class ContentsComparatorImpl<T extends ContentsComparatorContext
 		if (overlap.getA().isEmpty() || overlap.getB().isEmpty()) {
 			
 			//report to callback
-			if (consumer!=null) {
-				consumer.handle(a, rangeA, EventType.DIFFERENT_PART, EventSide.LEFT);
-				consumer.handle(b, rangeB, EventType.DIFFERENT_PART, EventSide.RIGHT);
-			}
+			report(consumer, a, rangeA, b, rangeB, EventType.DIFFERENT_PART);
 			
 			return 0;
 		}
@@ -130,10 +129,7 @@ public abstract class ContentsComparatorImpl<T extends ContentsComparatorContext
 		if (overlap.getA().length()<minBlockSize) {
 			
 			//report to callback
-			if (consumer!=null) {
-				consumer.handle(a, rangeA, EventType.DIFFERENT_PART, EventSide.LEFT);
-				consumer.handle(b, rangeB, EventType.DIFFERENT_PART, EventSide.RIGHT);
-			}
+			report(consumer, a, rangeA, b, rangeB, EventType.DIFFERENT_PART);
 			
 			return 0;
 		}
@@ -165,11 +161,10 @@ public abstract class ContentsComparatorImpl<T extends ContentsComparatorContext
 		
 		//report to callback - common part
 		if (consumer!=null) {
-			rangeA.initialize(h1aBegin, h2aBegin);
-			rangeB.initialize(h1bBegin, h2bBegin);
+			rangeA.initialize(h1aEnd, h2aBegin);
+			rangeB.initialize(h1bEnd, h2bBegin);
 			
-			consumer.handle(a, rangeA, EventType.COMMON_PART, EventSide.LEFT);
-			consumer.handle(b, rangeB, EventType.COMMON_PART, EventSide.RIGHT);
+			report(consumer, a, rangeA, b, rangeB, EventType.COMMON_PART);
 		}
 		
 		//define working area after common part
@@ -180,5 +175,14 @@ public abstract class ContentsComparatorImpl<T extends ContentsComparatorContext
 		sum += afterMaxPart*compareIntervalsRecursively(a, rangeA, b, rangeB, minBlockSize, consumer, overlap, context);
 		
 		return sum;
+	}
+
+	private void report(DiffEventsHandler consumer, Content a, IntRange rangeA, Content b, IntRange rangeB, EventType type) {
+		if (consumer!=null) {
+			if (rangeA.length()>0 || rangeB.length()>0) {
+				consumer.handle(a, rangeA, type, EventSide.LEFT);
+				consumer.handle(b, rangeB, type, EventSide.RIGHT);
+			}
+		}
 	}
 }
