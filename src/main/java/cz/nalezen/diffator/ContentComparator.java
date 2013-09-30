@@ -94,13 +94,13 @@ public class ContentComparator {
 	 */
 	public double compareWithExpectation(double minExpectation, Content left, Content right, DiffEventsHandler handler, int minBlockSize) {
 		
-		double bestPossible = Math.min(left.length(), right.length())/Math.max(left.length(), right.length());
+		double bestPossible = Math.min(left.length(), right.length())/(double)Math.max(left.length(), right.length());
 		
 		if (bestPossible<minExpectation) {
 			return 0;
 		}
 		
-		return compare(left, right, null, 0);
+		return compare(left, right, handler, minBlockSize);
 	}
 }
 
