@@ -53,6 +53,8 @@ Generate JavaDoc
 Simple HTML output
 ------------------
 
+Please keep in mind this output formatter is really basic one used for demonstration. I am sure you can prepare better one producing spectacular HTML output.
+
     String[] wordsA = ...;
     String[] wordsB = ...;
     
