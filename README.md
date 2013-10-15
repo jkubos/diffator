@@ -24,7 +24,7 @@ This algoriths belongs to the category of simplest, but efficient. One of proble
 Lightweight
 -----------
 
-Because used in web crawler (<http://www.nalezen.cz/about-crawler>) it must be memory efficient. For this reason it was optimized to minimize memory allocation during diff operation. It reports diff events to callback handler in SAX-like manner so no output collection is created.
+Because used in web crawler (<http://www.nalezen.cz/about-crawler>) it must be memory efficient. For this reason it was optimized to minimize memory allocation during diff operation. Actually there is no memory allocation during calculation. It reports diff events to callback handler in SAX-like manner so no output collection is created.
 
 Fast
 ----
