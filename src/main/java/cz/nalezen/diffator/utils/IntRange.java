@@ -184,4 +184,8 @@ public class IntRange implements Iterable<Integer> {
 	public Iterator<Integer> iterator() {
 		return new MyIterator();
 	}
+
+	public void print() {
+		System.out.println("("+begin+", "+end+">");
+	}
 }
